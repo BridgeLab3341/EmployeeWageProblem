@@ -8,7 +8,7 @@ namespace EmployeeWageProblem
 {
     public class Employee
     {
-        const int WagePerHour = 20, FullDayHour = 8, PartTimeHour = 4, Absent=0;
+        const int WagePerHour = 20, FullDayHour = 8, PartTimeHour = 4, FullTime = 0, PartTime = 1, Absent = 2;
         public void CheckEmployeeAttendance()
         {
             Random random = new Random();
@@ -24,23 +24,23 @@ namespace EmployeeWageProblem
         }
         public void DailyWage()
         {
+            int wage = 0;
             Random random = new Random();
             int wages = random.Next(0, 3);
-            if (wages == 0)
+            switch (wages)
             {
-                int dailywage = WagePerHour * FullDayHour;
-                Console.WriteLine("Daily Wage per Day = {0}",dailywage);
-            }  
-            if(wages == 1)
-            {  
-                int partime=WagePerHour * PartTimeHour;
-                Console.WriteLine("Part Time Wage Per Day = {0}",partime);
+                case FullTime:
+                    wage = FullDayHour;
+                    break;
+                    case PartTime:
+                    wage = PartTimeHour;
+                    break;
+                    case Absent: 
+                    wage = 0;
+                    break;                   
             }
-            if(wages == 2)
-            {
-                int absent = WagePerHour * Absent;
-                Console.WriteLine("Absent = {0}",absent);
-            }             
+            int result = wage * WagePerHour;
+            Console.WriteLine("Employee Wage = {0}",result);
         }
     }
 }
