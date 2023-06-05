@@ -8,6 +8,7 @@ namespace EmployeeWageProblem
 {
     public class Employee
     {
+        const int WagePerHour = 20, FullDayHour = 8;
         public void CheckEmployeeAttendance()
         {
             Random random = new Random();
@@ -20,6 +21,11 @@ namespace EmployeeWageProblem
             {
                 Console.WriteLine("Employee is Absent");
             }
+        }
+        public void DailyWage()
+        {
+            int fullDayWage = WagePerHour * FullDayHour;
+            Console.WriteLine("Daily Wage per day = {0}", fullDayWage);
         }
     }
 }

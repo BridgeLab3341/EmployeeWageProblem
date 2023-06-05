@@ -8,6 +8,7 @@
             Console.WriteLine("--------------------------------");
             Employee employee = new Employee();
             employee.CheckEmployeeAttendance();
+            employee.DailyWage();
         }
     }
 }
