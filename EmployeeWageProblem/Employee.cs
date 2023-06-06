@@ -8,7 +8,8 @@ namespace EmployeeWageProblem
 {
     public class Employee
     {
-        const int  WagePerHour = 20, FullDayHour = 8, PartTimeHour = 4, FullTime = 0, PartTime = 1, Absent = 2, TotalWorkingDays = 20;
+        const int  WagePerHour = 20, FullDayHour = 8, PartTimeHour = 4, FullTime = 0, PartTime = 1, Absent = 2, 
+            TotalWorkingDays = 20, TotalWorkingHours=100;
         public void CheckEmployeeAttendance()
         {
             Random random = new Random();
@@ -24,10 +25,11 @@ namespace EmployeeWageProblem
         }
         public void DailyWage()
         {
-            int wage = 0, totalEmpWage = 0;
+            int wage = 0, totalworkdays=0, totalworkhours=0;
             Random random = new Random();
-            for(int i = 1; i <= TotalWorkingDays; i++) 
+            while(totalworkhours <= TotalWorkingHours && totalworkdays < TotalWorkingDays) 
             {
+                totalworkdays++;
                 int wages = random.Next(0, 3);
                 switch (wages)
                 {
@@ -41,11 +43,14 @@ namespace EmployeeWageProblem
                         wage = 0;
                         break;
                 }
-                int result = wage * WagePerHour;
-                Console.WriteLine("Employee Wage Per Day = {0}", result);
-                 totalEmpWage+= result;  
+                //int result = wage * WagePerHour;
+                totalworkhours+= wage;
+                Console.WriteLine("Day "+totalworkdays +"====> EmpHrs: "+wage);
             }
-            Console.WriteLine("Employee Wage for Month = {0}",totalEmpWage);
+            Console.WriteLine("Total working Hours = "+totalworkhours);
+            Console.WriteLine("Total working Days = "+totalworkdays);
+            int totalEmpWage = totalworkhours * WagePerHour;
+            Console.WriteLine("Employee Wage is = {0}",totalEmpWage);
         }
     }
 }
