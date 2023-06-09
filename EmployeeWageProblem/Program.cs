@@ -11,6 +11,7 @@
             employee.DailyWage("Infosys", 24, 29, 8);
             employee.DailyWage("Google",20,30,9);
             employee.DailyWage("Microsoft",30,28,9);
+            employee.DailyWage("Jio", 29, 25, 8);
             employee.DisplayCompanyWages();
         }
     }

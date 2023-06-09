@@ -46,10 +46,10 @@ namespace EmployeeWageProblem
         public void DisplayCompanyWages()
         {
             Console.WriteLine("Comapany Wages");
-            Console.WriteLine("===============");
+            Console.WriteLine("==============");
             for (int i = 0; i < companyCount; i++)
             {
-                Console.WriteLine("Company Name : {0}, Total Wages : {1}", companyNames[i], companyWages[i]);
+                Console.WriteLine("Company Name: {0}, Total Wages: {1}", companyNames[i], companyWages[i]);
             }
         }
     }
