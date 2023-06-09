@@ -8,49 +8,84 @@ namespace EmployeeWageProblem
 {
     public class Employee
     {
-        const int FullDayHour = 8, PartTimeHour = 4, FullTime = 0, PartTime = 1, Absent = 2;
-        string[] companyNames = new string[10];
-        int[] companyWages = new int[10];
-        int companyCount = 0;
-        public void DailyWage(string companyName, int WagePerHour, int TotalWorkingDays, int TotalWorkingHours)
+        public class CompanyWage
         {
-            int emHrs = 0, totalworkdays=0, totalworkhours=0;
-            while(totalworkhours < TotalWorkingHours && totalworkdays < TotalWorkingDays) 
+            public string CompanyName { get; set; }
+            public int TotalWage { get; set; }
+            public List<int> DailyWages { get; set; }
+        }
+
+        public List<CompanyWage> companyWages = new List<CompanyWage>();
+
+        private const int FullDayHour = 8;
+        private const int PartTimeHour = 4;
+        private const int FullTime = 0;
+        private const int PartTime = 1;
+        private const int Absent = 2;
+
+        public void DailyWage(string companyName, int wagePerHour, int totalWorkingDays, int totalWorkingHours)
+        {
+            List<int> dailyWages = new List<int>();
+            int empHrs = 0;
+            int totalWorkDays = 0;
+            int totalWorkHours = 0;
+
+            while (totalWorkHours < totalWorkingHours && totalWorkDays < totalWorkingDays)
             {
-                totalworkdays++;
-                Random random = new Random();
-                int wages = random.Next(0, 3);
+                totalWorkDays++;
+                int wages = GetEmployeeWage();
                 switch (wages)
                 {
                     case FullTime:
-                        emHrs = FullDayHour;
+                        empHrs = FullDayHour;
                         break;
                     case PartTime:
-                        emHrs = PartTimeHour;
+                        empHrs = PartTimeHour;
                         break;
-                    case Absent:    
-                        emHrs = 0;
+                    case Absent:
+                        empHrs = 0;
                         break;
                 }
-                totalworkhours+= emHrs;
-                Console.WriteLine("Company Name "+companyName +"====> EmpHrs: "+ emHrs);
+                totalWorkHours += empHrs;
+                int dailyWage = empHrs * wagePerHour;
+                dailyWages.Add(dailyWage);
+                Console.WriteLine("Company Name: {0} ===> EmpHrs: {1}", companyName, empHrs);
             }
-            Console.WriteLine("Total working Hours = "+totalworkhours);
-            Console.WriteLine("Total working Days = "+totalworkdays);
-            int totalEmpWage = totalworkhours * WagePerHour;
-            Console.WriteLine("Employee Wage is = {0}",totalEmpWage);
-            companyNames[companyCount] = companyName;
-            companyWages[companyCount] = totalEmpWage;
-            companyCount++;          
+
+            Console.WriteLine("Total working Hours = {0}", totalWorkHours);
+            Console.WriteLine("Total working Days = {0}", totalWorkDays);
+            int totalEmpWage = totalWorkHours * wagePerHour;
+            Console.WriteLine("Employee Wage is = {0}", totalEmpWage);
+
+            CompanyWage companyWage = new CompanyWage()
+            {
+                CompanyName = companyName,
+                TotalWage = totalEmpWage,
+                DailyWages = dailyWages
+            };
+            companyWages.Add(companyWage);
         }
+
+        private int GetEmployeeWage()
+        {
+            Random random = new Random();
+            return random.Next(0, 3);
+        }
+
         public void DisplayCompanyWages()
         {
-            Console.WriteLine("Comapany Wages");
+            Console.WriteLine("Company Wages");
             Console.WriteLine("==============");
-            for (int i = 0; i < companyCount; i++)
+            foreach (var companyWage in companyWages)
             {
-                Console.WriteLine("Company Name: {0}, Total Wages: {1}", companyNames[i], companyWages[i]);
+                Console.WriteLine("Company Name: {0}, Total Wage: {1}", companyWage.CompanyName, companyWage.TotalWage);
+                Console.WriteLine("Daily Wages:");
+                foreach (var dailyWage in companyWage.DailyWages)
+                {
+                    Console.WriteLine(dailyWage);
+                }
             }
         }
     }
 }
+
