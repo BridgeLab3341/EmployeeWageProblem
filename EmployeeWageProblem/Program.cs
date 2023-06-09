@@ -7,7 +7,6 @@
             Console.WriteLine("Welcome to Employee Wage Problem");
             Console.WriteLine("--------------------------------");
             Employee employee = new Employee();
-            employee.CheckEmployeeAttendance();
             employee.DailyWage();
         }
     }
