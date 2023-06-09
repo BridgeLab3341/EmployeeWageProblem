@@ -10,6 +10,7 @@
             employee.DailyWage("TCS",25,30,9);
             employee.DailyWage("Infosys", 24, 29, 8);
             employee.DailyWage("Google",20,30,9);
+            employee.DisplayCompanyWages();
         }
     }
 }
