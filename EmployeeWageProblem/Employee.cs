@@ -10,26 +10,13 @@ namespace EmployeeWageProblem
     {
         const int  WagePerHour = 20, FullDayHour = 8, PartTimeHour = 4, FullTime = 0, PartTime = 1, Absent = 2, 
             TotalWorkingDays = 20, TotalWorkingHours=100;
-        public void CheckEmployeeAttendance()
-        {
-            Random random = new Random();
-            int attendance = random.Next(0, 2);
-            if (attendance == 0)
-            {
-                Console.WriteLine("Employee is Present");
-            }
-            else
-            {
-                Console.WriteLine("Employee is Absent");
-            }
-        }
         public void DailyWage()
         {
             int wage = 0, totalworkdays=0, totalworkhours=0;
-            Random random = new Random();
             while(totalworkhours <= TotalWorkingHours && totalworkdays < TotalWorkingDays) 
             {
                 totalworkdays++;
+                Random random = new Random();
                 int wages = random.Next(0, 3);
                 switch (wages)
                 {
