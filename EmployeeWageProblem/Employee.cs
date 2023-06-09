@@ -8,12 +8,11 @@ namespace EmployeeWageProblem
 {
     public class Employee
     {
-        const int  WagePerHour = 20, FullDayHour = 8, PartTimeHour = 4, FullTime = 0, PartTime = 1, Absent = 2, 
-            TotalWorkingDays = 20, TotalWorkingHours=100;
-        public void DailyWage()
+        const int FullDayHour = 8, PartTimeHour = 4, FullTime = 0, PartTime = 1, Absent = 2;
+        public void DailyWage(string companyName, int WagePerHour, int TotalWorkingDays, int TotalWorkingHours)
         {
-            int wage = 0, totalworkdays=0, totalworkhours=0;
-            while(totalworkhours <= TotalWorkingHours && totalworkdays < TotalWorkingDays) 
+            int emHrs = 0, totalworkdays=0, totalworkhours=0;
+            while(totalworkhours < TotalWorkingHours && totalworkdays < TotalWorkingDays) 
             {
                 totalworkdays++;
                 Random random = new Random();
@@ -21,18 +20,18 @@ namespace EmployeeWageProblem
                 switch (wages)
                 {
                     case FullTime:
-                        wage = FullDayHour;
+                        emHrs = FullDayHour;
                         break;
                     case PartTime:
-                        wage = PartTimeHour;
+                        emHrs = PartTimeHour;
                         break;
                     case Absent:
-                        wage = 0;
+                        emHrs = 0;
                         break;
                 }
                 //int result = wage * WagePerHour;
-                totalworkhours+= wage;
-                Console.WriteLine("Day "+totalworkdays +"====> EmpHrs: "+wage);
+                totalworkhours+= emHrs;
+                Console.WriteLine("Company Name "+companyName +"====> EmpHrs: "+ emHrs);
             }
             Console.WriteLine("Total working Hours = "+totalworkhours);
             Console.WriteLine("Total working Days = "+totalworkdays);
